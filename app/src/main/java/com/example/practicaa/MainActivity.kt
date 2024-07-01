@@ -30,7 +30,8 @@ class MainActivity : AppCompatActivity(),OnQueryTextListener {
 
     private fun initRecyclerView() {
         adapter = DogsAdapter(dogImg)
-            binding.rvDogs.layoutManager = LinearLayoutManager(this)
+            binding.rvDogs.adapter = adapter
+            binding.rvDogs.layoutManager = LinearLayoutManager(this) // el error esta aca, adapter no iniciado
 
     }
 
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity(),OnQueryTextListener {
                     val  images:List<String> = puppies?.images ?: emptyList()
                     dogImg.clear()
                     dogImg.addAll(images)
-                    adapter.notifyDataSetChanged()
+                    adapter.updateImages(dogImg)
 
                 } else {
                     Log.i("CALL", "ENTRA EN ERROR")
